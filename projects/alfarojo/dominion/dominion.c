@@ -1117,7 +1117,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 int baronRefactor (int currentPlayer, int choice1,  struct gameState *state ) 
 {
 //Bug #1.  Would decrease number of buys by 1 if Baron is played.  Changed ++ to --	
-state->numBuys--; //Increase buys by 1!
+state->numBuys++; //Increase buys by 1!
 
 if(choice1 > 0) 
 { //Boolean true or going to discard an estate
@@ -1145,11 +1145,11 @@ if(choice1 > 0)
 
 			else if (p > state->handCount[currentPlayer])
 			{
-				if (DEBUG) 
-				{
-					printf("No estate cards in your hand, invalid choice\n");
-					printf("Must gain an estate if there are any\n");
-				}		
+			//	if (DEBUG) 
+			//	{
+			//		printf("No estate cards in your hand, invalid choice\n");
+			//		printf("Must gain an estate if there are any\n");
+			//	}		
 
 				if (supplyCount(estate,state) > 0) 
 				{
@@ -1171,19 +1171,20 @@ if(choice1 > 0)
 		}	
 }
 
+
 		else
 		{
 			if (supplyCount(estate,state) > 0)
 			{
 				gainCard(estate, state, 0, currentPlayer); //Gain an estate
 		
-				//Bug #2.  Estates will not decrement but will instead increment
+				//Bug #2.  Estates will not decrement but will instead increment. 
 				state->supplyCount[estate]++;//Decrement Estates
 				
-				if(supplyCount(estate, state) == 0) 
-				{
-					isGameOver(state);
-				}
+			//	if(supplyCount(estate, state) == 0) 
+			//	{
+			//	isGameOver(state);
+			//	}
 			}	
 
 		}
